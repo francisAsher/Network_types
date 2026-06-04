@@ -1,15 +1,17 @@
 import networkx as nx
+import numpy as np
 import matplotlib.pyplot as plt
 
-N = 1000
+N = 10000
 k = 4
 p = 0.01
 
 G = nx.watts_strogatz_graph(N, k, p)
-plt.title("Small World Network")
-nx.draw(G, node_size=10)
 
-plt.show()
+# plt.title("Small World Network")
+# nx.draw(G, node_size=10)
+#
+# plt.show()
 
 avg_path = nx.average_shortest_path_length(G)
 print("Shortest path length: " , avg_path)
@@ -19,6 +21,9 @@ print("Diameter: " , diameter)
 
 clustering = nx.average_clustering(G)
 print("Clustering coefficient: " , clustering)
+
+avg_degree = np.mean([d for n, d in G.degree()])
+print("Average Degree:", avg_degree)
 
 degree = [d for n, d in G.degree()]
 

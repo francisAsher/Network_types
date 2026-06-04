@@ -1,15 +1,16 @@
 import networkx as nx
 import matplotlib.pyplot as plt
+import numpy as np
 
-N = 1000
+N = 10000
 p = 0.01 #p is probability of people connecting = 1% (small probability because in real life people ain't connected to everyone)
 
 G = nx.erdos_renyi_graph(N, p) #create the random graph with 1%p
 
-plt.title("Random Network")
-nx.draw(G, node_size=10)
-
-plt.show()
+# plt.title("Random Network")
+# nx.draw(G, node_size=10)
+#
+# plt.show()
 
 avg_path = nx.average_shortest_path_length(G) #on the average how many steps to travel between two nodes
 print("Shortest Path Length: ", avg_path)
@@ -19,6 +20,9 @@ print("Diameter: ", diameter)
 
 clustering = nx.average_clustering(G) #how much friend groups exist, how the network is linked
 print("Clustering coefficient: ", clustering)
+
+avg_degree = np.mean([d for n, d in G.degree()])
+print("Average Degree:", avg_degree)
 
 degree = [d for n, d in G.degree()] #degree distribution
 
