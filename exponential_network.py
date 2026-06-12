@@ -21,7 +21,10 @@ plt.title("Exponential Degree Distribution")
 G = nx.Graph(G) #removes duplicate connections
 G.remove_edges_from(nx.selfloop_edges(G))  #removes cases like nodes connected to itself
 
-largest_cc = max(nx.connected_components(G), key=len)
+largest_cc = max(nx.connected_components(G), key=len) # Find the largest connected component in the network
+
+# Keep only the largest connected component so the graph is fully connected
+# This allows us to calculate metrics such as diameter and shortest path length
 G = G.subgraph(largest_cc).copy()
 
 # nx.draw(G, node_size = 50)
